@@ -47,7 +47,7 @@ public class Deck {
     for (int i = 0; i < DECK_SIZE; i++) {
       int index = rand.nextInt(DECK_SIZE - 1 - i);
       Card card = cardList.get(index);
-      cardList.remove(index);
+      cardList.remove(index); // causes compilation error
 
       System.out.println(cardList.size());
       returnDeck.push(card);

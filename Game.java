@@ -23,11 +23,11 @@ public class Game {
     return true;
   }
 
-  private static int checkWinner(Card[][] playerCards) {
-    for (int i = 0; i < playerCards.length; i++) {
+  private static int checkWinner(List<List<Card>> playerCards) {
+    for (int i = 0; i < playerCards.size(); i++) {
       int sum = 0;
-      for (int j = 0; i < playerCards[i].length; j++) {
-        sum += playerCards[i][j].getPoints();
+      for (int j = 0; i < playerCards.get(i).size(); j++) {
+        sum += playerCards.get(i).get(j).getPoints();
       }
 
       if (is_prime(sum)) {
@@ -55,16 +55,16 @@ public class Game {
       }
     }
 
-    /*
-    while (drawnCards.size() != Deck.DECK_SIZE && checkWinner(playerCards) == -1) {
+    while (!deck.cards.isEmpty()  && checkWinner(playerCards) == -1) {
       for (int i = 0; i < playerCount; i++) {
-        // PRE: assume this function works
-        Card newCard = drawCard();
+        Card newCard = deck.draw();
+        playerCards.get(i).add(newCard);
       }
     }
 
-    // TODO(): display what cards the winner had
-    return drawnCards.size() == 52 ? "Draw!" : "Player " + checkWinner " has won!";
-     */
+    // TODO(): display what cards the winner(s) had
+    int winner = checkWinner(playerCards);
+    System.out.println(deck.cards.isEmpty() || winner != -1 ? "There is a draw!" : "Player " + winner
+        + " has won!");
   }
 }
