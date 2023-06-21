@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
   private static final int INITIAL_NUMBER_OF_CARDS = 3;
@@ -26,7 +24,7 @@ public class Game {
   private static int checkWinner(List<List<Card>> playerCards) {
     for (int i = 0; i < playerCards.size(); i++) {
       int sum = 0;
-      for (int j = 0; i < playerCards.get(i).size(); j++) {
+      for (int j = 0; j < playerCards.get(i).size(); j++) {
         sum += playerCards.get(i).get(j).getPoints();
       }
 
@@ -48,6 +46,10 @@ public class Game {
 
     List<List<Card>> playerCards = new ArrayList<>();
 
+    for (int i = 0; i < playerCount; i++) {
+      playerCards.add(new ArrayList<>());
+    }
+
     // initialise player cards
     for (int i = 0; i < playerCount; i++) {
       for (int j = 0; j < INITIAL_NUMBER_OF_CARDS; j++) {
@@ -64,7 +66,7 @@ public class Game {
 
     // TODO(): display what cards the winner(s) had
     int winner = checkWinner(playerCards);
-    System.out.println(deck.cards.isEmpty() || winner != -1 ? "There is a draw!" : "Player " + winner
+    System.out.println(deck.cards.isEmpty() || winner == -1 ? "There is a draw!" : "Player " + (winner + 1)
         + " has won!");
   }
 }

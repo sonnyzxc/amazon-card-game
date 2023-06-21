@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Deck {
   public static final int DECK_SIZE = 52;
-  private static final List<Card> cardList = Arrays.asList(
+  private static final List<Card> cardList = new ArrayList<>(Arrays.asList(
       new Card(Suit.CLUBS, Rank.ACE), new Card(Suit.DIAMONDS, Rank.ACE),
       new Card(Suit.HEARTS, Rank.ACE), new Card(Suit.SPADES, Rank.ACE),
       new Card(Suit.CLUBS, Rank.TWO), new Card(Suit.DIAMONDS, Rank.TWO),
@@ -33,7 +33,7 @@ public class Deck {
       new Card(Suit.HEARTS, Rank.QUEEN), new Card(Suit.SPADES, Rank.QUEEN),
       new Card(Suit.CLUBS, Rank.KING), new Card(Suit.DIAMONDS, Rank.KING),
       new Card(Suit.HEARTS, Rank.KING), new Card(Suit.SPADES, Rank.KING)
-  );
+  ));
   Stack<Card> cards;
 
   public Deck() {
@@ -45,11 +45,11 @@ public class Deck {
 
     Random rand = new Random();
     for (int i = 0; i < DECK_SIZE; i++) {
-      int index = rand.nextInt(DECK_SIZE - 1 - i);
+      int index = rand.nextInt(DECK_SIZE - i);
       Card card = cardList.get(index);
       cardList.remove(index); // causes compilation error
 
-      System.out.println(cardList.size());
+      System.out.println("Cards in deck: " + cardList.size());
       returnDeck.push(card);
     }
 
